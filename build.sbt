@@ -4,7 +4,7 @@ inThisBuild(Seq(
   organization := "com.github.cornerman",
 
   crossScalaVersions := Seq("2.13.11", "3.3.0"),
-  scalaVersion := crossScalaVersions.value.head,
+  scalaVersion := crossScalaVersions.value.tail.head,
 
   licenses := Seq("MIT License" -> url("https://opensource.org/licenses/MIT")),
 
@@ -79,10 +79,11 @@ lazy val examples = project
   .settings(
     scalaVersion := "3.3.0",
     libraryDependencies ++= Seq(
-      "com.github.cornerman" %%% "sloth" % "0.7.0",
+      //"com.github.cornerman" %%% "sloth" % "0.7.0",
       "com.github.cornerman" %%% "chameleon" % "0.3.7",
       "dev.zio" %%% "zio" % "2.0.15",
       "dev.zio" %%% "zio-json" % "0.6.0"
     ),
     scalacOptions ++= Seq("-scalajs")
   ).enablePlugins(ScalaJSPlugin)
+  .dependsOn(sloth.js)
